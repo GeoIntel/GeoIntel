@@ -63,15 +63,15 @@ const OpenLayersMap = (props) => {
       )
       // fit map to feature extent (with 100px of padding)
       map.getView().fit(featuresLayer.getSource().getExtent(), {
-        padding: [100, 100, 100, 100]
+        // padding: [100, 100, 100, 100]
       })
     }
   }, [props.features])
 
   return (
-    <div ref={mapElement} className="map-container">
+    <div className="container-fluid" style={{ height: '100vh', padding: 0, margin: 0 }} ref={mapElement}>
       <div>
-        <p>{ (selectedCoord) ? toStringXY(selectedCoord, 5) : '' }</p>
+        <p style={{ position: 'absolute', right: 5, bottom: 0, zIndex: 1 }}>{ (selectedCoord) ? toStringXY(selectedCoord, 5) : '' }</p>
       </div>
     </div>
   )

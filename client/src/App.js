@@ -3,7 +3,7 @@ import OpenLayersMap from './components/OpenLayersMap'
 
 const App = () => {
   return (
-    <OpenLayersMap />
+    <OpenLayersMap features={[]} />
   )
 }
 
