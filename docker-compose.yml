@@ -25,5 +25,5 @@ services:
         soft: 262144
         hard: 262144
     volumes:
-      - ./client:/var/lib/clickhouse/
-      - ./client/node_modules:/var/log/clickhouse-server/
+      - ./ch_data:/var/lib/clickhouse/
+      - ./ch_logs:/var/log/clickhouse-server/
