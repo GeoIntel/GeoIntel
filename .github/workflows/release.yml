@@ -20,7 +20,7 @@ jobs:
         with:
           artifacts: "docker-compose.yml"
           bodyFile: "RELEASE.md"
-          token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Version
         id: get_version
