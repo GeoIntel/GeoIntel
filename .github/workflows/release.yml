@@ -39,7 +39,7 @@ jobs:
         with:
           context: ./api
           push: true
-          tags: ghcr.io/GeoIntel/geointel-api:${{ steps.get_version.outputs.VERSION }}
+          tags: ghcr.io/geointel/geointel-api:${{ steps.get_version.outputs.VERSION }}
 
       - name: Image digest (api)
         run: echo ${{ steps.docker_build_api.outputs.digest }}
@@ -50,7 +50,7 @@ jobs:
         with:
           context: ./client
           push: true
-          tags: ghcr.io/GeoIntel/geointel-client:${{ steps.get_version.outputs.VERSION }}
+          tags: ghcr.io/geointel/geointel-client:${{ steps.get_version.outputs.VERSION }}
 
       - name: Image digest (client)
         run: echo ${{ steps.docker_build_client.outputs.digest }}
