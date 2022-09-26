@@ -1,1 +1,56 @@
-name: Releases
+name: GeoIntel Releases
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: GeoIntel Releases
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "docker-compose.yml"
+          bodyFile: "RELEASE.md"
+          token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+
+      - name: Get Version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker Build and Push (api)
+        id: docker_build_api
+        uses: docker/build-push-action@v2
+        with:
+          context: ./api
+          push: true
+          tags: ghcr.io/GeoIntel/geointel-api:${{ steps.get_version.outputs.VERSION }}
+
+      - name: Image digest (api)
+        run: echo ${{ steps.docker_build_api.outputs.digest }}
+
+      - name: Docker Build and Push (client)
+        id: docker_build_client
+        uses: docker/build-push-action@v2
+        with:
+          context: ./client
+          push: true
+          tags: ghcr.io/GeoIntel/geointel-client:${{ steps.get_version.outputs.VERSION }}
+
+      - name: Image digest (client)
+        run: echo ${{ steps.docker_build_client.outputs.digest }}
