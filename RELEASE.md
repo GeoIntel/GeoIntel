@@ -1,4 +1,4 @@
-# GeoIntel 0.0.2
+# GeoIntel 0.0.5
 
 - docker-compose.yml with ghcr.io images
 - Release Workflow
