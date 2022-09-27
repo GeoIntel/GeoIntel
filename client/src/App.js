@@ -1,9 +1,13 @@
 import React from 'react'
+import NavBar from './components/NavBar'
 import OpenLayersMap from './components/OpenLayersMap'
 
 const App = () => {
   return (
-    <OpenLayersMap features={[]} />
+    <>
+      <NavBar />
+      <OpenLayersMap features={[]} />
+    </>
   )
 }
 

@@ -69,7 +69,7 @@ const OpenLayersMap = (props) => {
   }, [props.features])
 
   return (
-    <div className="container-fluid" style={{ height: '100vh', padding: 0, margin: 0 }} ref={mapElement}>
+    <div className="container-fluid" style={{ height: '100vh', padding: 0, margin: 0, overflow: 'hidden' }} ref={mapElement}>
       <div>
         <p style={{ position: 'absolute', right: 5, bottom: 0, zIndex: 1 }}>{ (selectedCoord) ? toStringXY(selectedCoord, 5) : '' }</p>
       </div>
