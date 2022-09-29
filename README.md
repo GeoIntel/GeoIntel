@@ -11,7 +11,7 @@ mkdir GeoIntel
 cd GeoIntel
 mkdir ch_data
 mkdir ch_logs
-wget https://github.com/GeoIntel/GeoIntel/releases/download/v0.0.8/docker-compose.yml
+wget https://github.com/GeoIntel/GeoIntel/releases/download/v0.0.9/docker-compose.yml
 docker compose up -d
 ```
 
