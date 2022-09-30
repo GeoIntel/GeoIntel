@@ -1,7 +1,6 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
-import MouseCoordinates from './MouseCoordinates'
 
 const NavBar = () => {
   return (
@@ -17,8 +16,8 @@ const NavBar = () => {
             />
           </Navbar.Brand>
           <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <MouseCoordinates />
+          <Navbar.Collapse>
+            <Navbar.Text style={{ padding: 0, color: '#fff' }} id="mouse-position"></Navbar.Text>
           </Navbar.Collapse>
         </Container>
       </Navbar>

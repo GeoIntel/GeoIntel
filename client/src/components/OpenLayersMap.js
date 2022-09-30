@@ -13,7 +13,6 @@ import { defaults as defaultControls } from 'ol/control'
 const OpenLayersMap = (props) => {
   const [map, setMap] = useState()
   const [featuresLayer, setFeaturesLayer] = useState()
-  // const [selectedCoord, setSelectedCoord] = useState()
   const mapElement = useRef()
   mapElement.current = map
 
