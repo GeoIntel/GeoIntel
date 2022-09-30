@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
+import MouseCoordinates from './MouseCoordinates'
 
 const NavBar = () => {
   return (
@@ -15,6 +16,10 @@ const NavBar = () => {
               alt="GeoIntel"
             />
           </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end">
+            <MouseCoordinates />
+          </Navbar.Collapse>
         </Container>
       </Navbar>
   )

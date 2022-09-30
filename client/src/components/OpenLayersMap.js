@@ -6,8 +6,9 @@ import TileLayer from 'ol/layer/Tile'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import XYZ from 'ol/source/XYZ'
-// import { transform } from 'ol/proj'
-// import { toStringXY } from 'ol/coordinate'
+import MousePosition from 'ol/control/MousePosition'
+import { createStringXY } from 'ol/coordinate'
+import { defaults as defaultControls } from 'ol/control'
 
 const OpenLayersMap = (props) => {
   const [map, setMap] = useState()
@@ -23,13 +24,19 @@ const OpenLayersMap = (props) => {
   // }
 
   useEffect(() => {
-    // create and add vector source layer
+    const mousePositionControl = new MousePosition({
+      coordinateFormat: createStringXY(6),
+      projection: 'EPSG:4326',
+      target: document.getElementById('mouse-position')
+    })
+
     const initalFeaturesLayer = new VectorLayer({
       source: new VectorSource()
     })
 
     // create map
     const initialMap = new Map({
+      controls: defaultControls().extend([mousePositionControl]),
       target: mapElement.current,
       layers: [
         // USGS Topo
@@ -38,20 +45,17 @@ const OpenLayersMap = (props) => {
             url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}'
           })
         }),
-
         initalFeaturesLayer
       ],
       view: new View({
         projection: 'EPSG:3857',
         center: [0, 0],
         zoom: 2
-      }),
-      controls: []
+      })
     })
 
     setMap(initialMap)
     setFeaturesLayer(initalFeaturesLayer)
-    // initialMap.on('click', handleMapClick)
   }, [])
 
   useEffect(() => {
@@ -67,9 +71,6 @@ const OpenLayersMap = (props) => {
 
   return (
     <div className="container-fluid" style={{ height: '100vh', padding: 0, margin: 0, overflow: 'hidden' }} ref={mapElement}>
-      {/* <div>
-        <p style={{ position: 'absolute', right: 5, bottom: 0, zIndex: 1 }}>{ (selectedCoord) ? toStringXY(selectedCoord, 5) : '' }</p>
-      </div> */}
     </div>
   )
 }
