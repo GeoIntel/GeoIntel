@@ -1,22 +1,22 @@
 version: 2
 updates:
   - package-ecosystem: github-actions
-    directory: /.github/workflows
+    directory: .github/workflows
     schedule:
       interval: daily
   - package-ecosystem: npm
-    directory: /api
+    directory: api
     schedule:
       interval: daily
   - package-ecosystem: npm
-    directory: /client
+    directory: client
     schedule:
       interval: daily
   - package-ecosystem: docker
-    directory: /api
+    directory: api
     schedule:
       interval: daily
   - package-ecosystem: docker
-    directory: /client
+    directory: client
     schedule:
       interval: daily
