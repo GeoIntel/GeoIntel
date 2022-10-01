@@ -15,6 +15,10 @@ const NavBar = () => {
               alt="GeoIntel"
             />
           </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse>
+            <Navbar.Text style={{ padding: 0, color: '#fff' }} id="mouse-position"></Navbar.Text>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
   )
