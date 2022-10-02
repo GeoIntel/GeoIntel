@@ -1,0 +1,27 @@
+services:
+  api:
+    build: ./api
+    container_name: api
+    volumes:
+      - ./api:/app
+      - ./api/node_modules:/app/node_modules
+  client:
+    build: ./client
+    container_name: client
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./client:/app
+      - ./client/node_modules:/app/node_modules
+    stdin_open: true
+    tty: true
+  db:
+    image: clickhouse/clickhouse-server
+    container_name: db
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - ./ch_data:/var/lib/clickhouse/
+      - ./ch_logs:/var/log/clickhouse-server/

@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/GeoIntel/GeoIntel/actions/workflows/codeql.yml/badge.svg)](https://github.com/GeoIntel/GeoIntel/actions/workflows/codeql.yml)
+
 # GeoIntel
 
 Open source GEOINT tool.

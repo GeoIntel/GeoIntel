@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
+import ProjectsNav from './ProjectsNav'
 
 const NavBar = () => {
   return (
@@ -17,7 +18,7 @@ const NavBar = () => {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse>
-            <Navbar.Text style={{ padding: 0, color: '#fff' }} id="mouse-position"></Navbar.Text>
+            <ProjectsNav />
           </Navbar.Collapse>
         </Container>
       </Navbar>

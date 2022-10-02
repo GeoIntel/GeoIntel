@@ -8,19 +8,12 @@ import VectorSource from 'ol/source/Vector'
 import XYZ from 'ol/source/XYZ'
 import MousePosition from 'ol/control/MousePosition'
 import { createStringXY } from 'ol/coordinate'
-import { defaults as defaultControls } from 'ol/control'
 
 const OpenLayersMap = (props) => {
   const [map, setMap] = useState()
   const [featuresLayer, setFeaturesLayer] = useState()
   const mapElement = useRef()
   mapElement.current = map
-
-  // const handleMapClick = (event) => {
-  //   const clickedCoord = mapElement.current.getCoordinateFromPixel(event.pixel)
-  //   const transormedCoord = transform(clickedCoord, 'EPSG:3857', 'EPSG:4326')
-  //   setSelectedCoord(transormedCoord)
-  // }
 
   useEffect(() => {
     const mousePositionControl = new MousePosition({
@@ -33,12 +26,10 @@ const OpenLayersMap = (props) => {
       source: new VectorSource()
     })
 
-    // create map
     const initialMap = new Map({
-      controls: defaultControls().extend([mousePositionControl]),
+      controls: [mousePositionControl],
       target: mapElement.current,
       layers: [
-        // USGS Topo
         new TileLayer({
           source: new XYZ({
             url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}'
