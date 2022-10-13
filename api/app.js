@@ -8,6 +8,10 @@ app.get('/', (req, res) => {
   res.send('Thanks for using GeoIntel.')
 })
 
+app.post('/project', (req, res) => {
+
+})
+
 app.listen(port, () =>
   console.log(`GeoIntel running on port ${port}, http://localhost:${port}`)
 )

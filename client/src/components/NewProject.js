@@ -29,6 +29,10 @@ const NewProject = () => {
     setProjectName(inputValue)
   }
 
+  const newProject = () => {
+
+  }
+
   return (
     <>
       <span onClick={handleShow}><FontAwesomeIcon icon={faFileCirclePlus} /> New Project</span>
@@ -59,6 +63,7 @@ const NewProject = () => {
             variant="primary"
             type="submit"
             disabled={!valid}
+            onClick={newProject}
           >
             Submit
           </Button>

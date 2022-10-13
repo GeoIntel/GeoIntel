@@ -4,6 +4,8 @@
 
 Open source GEOINT tool.
 
+This project is currently under development. Please use it, check it out, provide [feedback](https://github.com/GeoIntel/GeoIntel/issues), but do not rely on it for serious investigations. [Database migrations](https://github.com/GeoIntel/GeoIntel/issues/54) for [release upgrades](https://github.com/GeoIntel/GeoIntel/issues/55) are not yet setup, so existing data is not backwards compatible.
+
 ## Let's Go
 
 ### Stable Release
