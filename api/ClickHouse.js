@@ -17,11 +17,12 @@ class ClickHouse {
     await client.close()
   }
 
-  async createDatabase (databaseName) {
+  async createDatabase (databaseName, databaseDescription) {
     try {
       await this.#exec(`
-        CREATE DATABASE ${databaseName}
+        CREATE DATABASE "${databaseName} COMMENT ${databaseDescription}"
       `)
+      console.log(`Created database ${databaseName}`)
       return true
     } catch (err) {
       console.log(err)

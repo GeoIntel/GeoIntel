@@ -1,6 +1,6 @@
 {
   "name": "geointel-client",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",

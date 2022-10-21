@@ -5,32 +5,59 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
+import http from '../utils/http'
 
 const NewProject = () => {
   const [show, setShow] = useState(false)
   const [projectName, setProjectName] = useState('')
+  const [projectDescription, setProjectDescription] = useState('')
   const [valid, setValid] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [nameErrorMessage, setNameErrorMessage] = useState('')
+  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState('')
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-  const handleChange = (e) => {
+  const handleNameChange = (e) => {
     const inputValue = e.target.value
     const regex = /^[a-zA-Z_][0-9a-zA-Z_]*$/g
     const isValid = regex.test(inputValue)
     if (!isValid) {
       setValid(false)
-      setErrorMessage('Please use only a-z, A-Z, 0-9, and underscore (_) symbol.')
+      setNameErrorMessage('Please use only a-z, A-Z, 0-9, and underscore (_) symbol.')
     }
     if (isValid) {
       setValid(true)
-      setErrorMessage('')
+      setNameErrorMessage('')
     }
     setProjectName(inputValue)
   }
+  const handleDescriptionChange = (e) => {
+    const inputValue = e.target.value
+    const regex = /^[-0-9a-zA-Z_ ]*$/g
+    const isValid = regex.test(inputValue)
+    if (!isValid) {
+      setValid(false)
+      setDescriptionErrorMessage('Please use only a-z, A-Z, 0-9, space, hyphen (-), and underscore (_) symbol.')
+    }
+    if (isValid) {
+      setValid(true)
+      setDescriptionErrorMessage('')
+    }
+    setProjectDescription(inputValue)
+  }
 
   const newProject = () => {
-
+    handleClose()
+    http('project', 'post', {
+      databaseName: projectName,
+      databaseDescription: projectDescription
+    })
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   return (
@@ -41,7 +68,12 @@ const NewProject = () => {
           <Offcanvas.Title><FontAwesomeIcon icon={faFileCirclePlus} /> New Project</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Form>
+          <Form
+            onKeyDown={e => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
+            onFocus={e => e.stopPropagation()}
+            onMouseOver={e => e.stopPropagation()}
+          >
             <FloatingLabel
               controlId="newProject.ProjectName"
               label="Name"
@@ -52,11 +84,26 @@ const NewProject = () => {
                 placeholder="All_The_Intel"
                 autoFocus
                 value={projectName}
-                onChange={handleChange}
+                onChange={handleNameChange}
               />
             </FloatingLabel>
             <div className='validation-field text-danger my-1'>
-              <small>{errorMessage}</small>
+              <small>{nameErrorMessage}</small>
+            </div>
+            <FloatingLabel
+              controlId="newProject.ProjectDescription"
+              label="Description"
+              className="mb-3"
+            >
+              <Form.Control
+                type="text"
+                placeholder="The project with all the intel."
+                value={projectDescription}
+                onChange={handleDescriptionChange}
+              />
+            </FloatingLabel>
+            <div className='validation-field text-danger my-1'>
+              <small>{descriptionErrorMessage}</small>
             </div>
           </Form>
           <Button
