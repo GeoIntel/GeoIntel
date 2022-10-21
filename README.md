@@ -1,4 +1,4 @@
-[![CodeQL](https://github.com/GeoIntel/GeoIntel/actions/workflows/codeql.yml/badge.svg)](https://github.com/GeoIntel/GeoIntel/actions/workflows/codeql.yml)
+[![CodeQL](https://github.com/GeoIntel/GeoIntel/actions/workflows/codeql.yml/badge.svg)](https://github.com/GeoIntel/GeoIntel/actions/workflows/codeql.yml) [![GeoIntel Releases](https://github.com/GeoIntel/GeoIntel/actions/workflows/release.yml/badge.svg)](https://github.com/GeoIntel/GeoIntel/actions/workflows/release.yml)
 
 # GeoIntel
 
@@ -15,7 +15,7 @@ mkdir GeoIntel
 cd GeoIntel
 mkdir ch_data
 mkdir ch_logs
-wget https://github.com/GeoIntel/GeoIntel/releases/download/v0.1.0/docker-compose.yml
+wget https://github.com/GeoIntel/GeoIntel/releases/download/v0.1.1/docker-compose.yml
 docker compose up -d
 ```
 Go to https://localhost:3000
