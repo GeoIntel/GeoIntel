@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
@@ -14,6 +15,8 @@ const NewProject = () => {
   const [valid, setValid] = useState(false)
   const [nameErrorMessage, setNameErrorMessage] = useState('')
   const [descriptionErrorMessage, setDescriptionErrorMessage] = useState('')
+
+  const notify = () => toast.success(`Created project - ${projectName}`)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -53,6 +56,7 @@ const NewProject = () => {
       databaseDescription: projectDescription
     })
       .then(response => {
+        notify()
         console.log(response.data)
       })
       .catch(error => {

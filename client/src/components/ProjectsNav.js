@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile } from '@fortawesome/free-solid-svg-icons'
 import ToolTip from './ToolTip'
 import NewProject from './NewProject'
+import DeleteProject from './DeleteProject'
 
 const ProjectsNav = () => {
   return (
@@ -14,6 +15,9 @@ const ProjectsNav = () => {
     } id="basic-nav-dropdown">
       <NavDropdown.Item href="#">
           <NewProject />
+      </NavDropdown.Item>
+      <NavDropdown.Item href="#">
+          <DeleteProject />
       </NavDropdown.Item>
     </NavDropdown>
   )
