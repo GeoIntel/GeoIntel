@@ -8,9 +8,7 @@ import Coordinates from './components/Coordinates'
 const App = () => {
   return (
     <>
-      <ToastContainer
-        theme="dark"
-      />
+      <ToastContainer theme="dark" />
       <NavBar />
       <OpenLayersMap features={[]} />
       <Coordinates />

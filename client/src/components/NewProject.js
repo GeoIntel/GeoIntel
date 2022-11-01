@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import propTypes from 'prop-types'
 import { toast } from 'react-toastify'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import Form from 'react-bootstrap/Form'
@@ -8,13 +9,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import http from '../utils/http'
 
-const NewProject = () => {
+const NewProject = (props) => {
   const [show, setShow] = useState(false)
   const [projectName, setProjectName] = useState('')
   const [projectDescription, setProjectDescription] = useState('')
   const [valid, setValid] = useState(false)
   const [nameErrorMessage, setNameErrorMessage] = useState('')
   const [descriptionErrorMessage, setDescriptionErrorMessage] = useState('')
+  const { onProjectsChange } = props
 
   const notify = () => toast.success(`Created project - ${projectName}`)
 
@@ -58,6 +60,7 @@ const NewProject = () => {
       .then(response => {
         notify()
         console.log(response.data)
+        onProjectsChange()
       })
       .catch(error => {
         console.log(error)
@@ -122,6 +125,10 @@ const NewProject = () => {
       </Offcanvas>
     </>
   )
+}
+
+NewProject.propTypes = {
+  onProjectsChange: propTypes.func
 }
 
 export default NewProject
