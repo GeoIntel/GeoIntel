@@ -20,12 +20,40 @@ class ClickHouse {
   async createDatabase (databaseName, databaseDescription) {
     try {
       await this.#exec(`
-        CREATE DATABASE "${databaseName} COMMENT ${databaseDescription}"
+        CREATE DATABASE "${databaseName}" COMMENT '${databaseDescription}';
       `)
       console.log(`Created database ${databaseName}`)
       return true
     } catch (err) {
-      console.log(err)
+      console.error(err)
+      return false
+    }
+  }
+
+  async deleteDatabase (databaseName) {
+    try {
+      await this.#exec(`
+        DROP DATABASE IF EXISTS "${databaseName}";
+      `)
+      console.log(`Deleted database ${databaseName}`)
+      return true
+    } catch (err) {
+      console.error(err)
+      return false
+    }
+  }
+
+  async listDatabases () {
+    try {
+      const client = this.#client()
+      const listDb = await client.query({
+        query: 'SELECT * FROM system.databases;'
+      })
+      console.log('Listing Databases')
+      const listDbJson = await listDb.json()
+      return listDbJson
+    } catch (err) {
+      console.error(err)
       return false
     }
   }
