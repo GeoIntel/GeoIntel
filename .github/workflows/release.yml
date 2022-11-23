@@ -35,7 +35,7 @@ jobs:
 
       - name: Docker Build and Push (api)
         id: docker_build_api
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./api
           push: true
@@ -46,7 +46,7 @@ jobs:
 
       - name: Docker Build and Push (client)
         id: docker_build_client
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./client
           push: true
